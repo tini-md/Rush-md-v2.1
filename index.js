@@ -1,12 +1,12 @@
 const {
 default: makeWASocket,
-useMultiFileAuthState,
+useMultiFilerushState,
 DisconnectReason,
 jidNormalizedUser,
 getContentType,
-fetchLatestBaileysVersion,
+fetchLatestbotVersion,
 Browsers
-} = require('@whiskeysockets/baileys')
+} = require('@whiskeysockets/bot')
 
 const { getBuffer, getGroupAdmins, getRandom, h2k, isUrl, Json, runtime, sleep, fetchJson } = require('./lib/functions')
 const fs = require('fs')
@@ -21,15 +21,15 @@ const prefix = '.'
 
 const ownerNumber = ['94762498519']
 
-//===================SESSION-AUTH============================
-if (!fs.existsSync(__dirname + '/auth_info_baileys/creds.json')) {
+//===================SESSION-rush============================
+if (!fs.existsSync(__dirname + '/rush_md_bot/creds.json')) {
 if(!config.SESSION_ID) return console.log('Please add your session to SESSION_ID env !!')
 const sessdata = config.SESSION_ID
 const filer = File.fromURL(`https://mega.nz/file/${sessdata}`)
 filer.download((err, data) => {
 if(err) throw err
-fs.writeFile(__dirname + '/auth_info_baileys/creds.json', data, () => {
-console.log("Session downloaded ✅")
+fs.writeFile(__dirname + '/rush_md_bot/creds.json', data, () => {
+console.log("Session downloaded âœ…")
 })})}
 
 const express = require("express");
@@ -39,16 +39,16 @@ const port = process.env.PORT || 8000;
 //=============================================
 
 async function connectToWA() {
-console.log("Connecting wa bot 🧬...");
-const { state, saveCreds } = await useMultiFileAuthState(__dirname + '/auth_info_baileys/')
-var { version } = await fetchLatestBaileysVersion()
+console.log("Connecting wa bot ðŸ§¬...");
+const { state, saveCreds } = await useMultiFilerushState(__dirname + '/rush_md_bot/')
+var { version } = await fetchLatestbotVersion()
 
 const conn = makeWASocket({
         logger: P({ level: 'silent' }),
         printQRInTerminal: false,
         browser: Browsers.macOS("Firefox"),
         syncFullHistory: true,
-        auth: state,
+        rush: state,
         version
         })
     
@@ -59,17 +59,17 @@ if (lastDisconnect.error.output.statusCode !== DisconnectReason.loggedOut) {
 connectToWA()
 }
 } else if (connection === 'open') {
-console.log('😼 Installing... ')
+console.log('ðŸ˜¼ Installing... ')
 const path = require('path');
 fs.readdirSync("./plugins/").forEach((plugin) => {
 if (path.extname(plugin).toLowerCase() == ".js") {
 require("./plugins/" + plugin);
 }
 });
-console.log('Plugins installed successful ✅')
-console.log('Bot connected to whatsapp ✅')
+console.log('Plugins installed successful âœ…')
+console.log('Bot connected to whatsapp âœ…')
 
-let up = `Wa-BOT connected successful ✅\n\nPREFIX: ${prefix}`;
+let up = `Wa-BOT connected successful âœ…\n\nPREFIX: ${prefix}`;
 
 conn.sendMessage(ownerNumber + "@s.whatsapp.net", { image: { url: `https://telegra.ph/file/900435c6d3157c98c3c88.jpg` }, caption: up })
 
@@ -86,7 +86,7 @@ const m = sms(conn, mek)
 const type = getContentType(mek.message)
 const content = JSON.stringify(mek.message)
 const from = mek.key.remoteJid
-const quoted = type == 'extendedTextMessage' && mek.message.extendedTextMessage.contextInfo != null ? mek.message.extendedTextMessage.contextInfo.quotedMessage || [] : []
+const quoted = type == 'extendedTextMessage' && mek.message.extendedTextMessage.contextmd != null ? mek.message.extendedTextMessage.contextmd.quotedMessage || [] : []
 const body = (type === 'conversation') ? mek.message.conversation : (type === 'extendedTextMessage') ? mek.message.extendedTextMessage.text : (type == 'imageMessage') && mek.message.imageMessage.caption ? mek.message.imageMessage.caption : (type == 'videoMessage') && mek.message.videoMessage.caption ? mek.message.videoMessage.caption : ''
 const isCmd = body.startsWith(prefix)
 const command = isCmd ? body.slice(prefix.length).trim().split(' ').shift().toLowerCase() : ''
@@ -168,9 +168,10 @@ command.function(conn, mek, m,{from, l, quoted, body, isCmd, command, args, q, i
 })
 }
 app.get("/", (req, res) => {
-res.send("hey, bot started✅");
+res.send("hey, bot startedâœ…");
 });
 app.listen(port, () => console.log(`Server listening on port http://localhost:${port}`));
 setTimeout(() => {
 connectToWA()
 }, 4000);  
+
