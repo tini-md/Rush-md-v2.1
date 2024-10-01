@@ -1,12 +1,12 @@
 const {
 default: makeWASocket,
-useMultiFilerushState,
+useMultiFileAuthState,
 DisconnectReason,
 jidNormalizedUser,
 getContentType,
-fetchLatestbotVersion,
+fetchLatestBaileysVersion,
 Browsers
-} = require('@whiskeysockets/bot')
+} = require('@whiskeysockets/baileys')
 
 const { getBuffer, getGroupAdmins, getRandom, h2k, isUrl, Json, runtime, sleep, fetchJson } = require('./lib/functions')
 const fs = require('fs')
@@ -21,7 +21,7 @@ const prefix = '.'
 
 const ownerNumber = ['94762498519']
 
-//===================SESSION-rush============================
+//===================SESSION-AUTH============================
 if (!fs.existsSync(__dirname + '/rush_md_bot/creds.json')) {
 if(!config.SESSION_ID) return console.log('Please add your session to SESSION_ID env !!')
 const sessdata = config.SESSION_ID
@@ -40,15 +40,15 @@ const port = process.env.PORT || 8000;
 
 async function connectToWA() {
 console.log("Connecting wa bot ðŸ§¬...");
-const { state, saveCreds } = await useMultiFilerushState(__dirname + '/rush_md_bot/')
-var { version } = await fetchLatestbotVersion()
+const { state, saveCreds } = await useMultiFileAuthState(__dirname + '/rush_md_bot/')
+var { version } = await fetchLatestBaileysVersion()
 
 const conn = makeWASocket({
         logger: P({ level: 'silent' }),
         printQRInTerminal: false,
         browser: Browsers.macOS("Firefox"),
         syncFullHistory: true,
-        rush: state,
+        auth: state,
         version
         })
     
@@ -86,7 +86,7 @@ const m = sms(conn, mek)
 const type = getContentType(mek.message)
 const content = JSON.stringify(mek.message)
 const from = mek.key.remoteJid
-const quoted = type == 'extendedTextMessage' && mek.message.extendedTextMessage.contextmd != null ? mek.message.extendedTextMessage.contextmd.quotedMessage || [] : []
+const quoted = type == 'extendedTextMessage' && mek.message.extendedTextMessage.contextInfo != null ? mek.message.extendedTextMessage.contextInfo.quotedMessage || [] : []
 const body = (type === 'conversation') ? mek.message.conversation : (type === 'extendedTextMessage') ? mek.message.extendedTextMessage.text : (type == 'imageMessage') && mek.message.imageMessage.caption ? mek.message.imageMessage.caption : (type == 'videoMessage') && mek.message.videoMessage.caption ? mek.message.videoMessage.caption : ''
 const isCmd = body.startsWith(prefix)
 const command = isCmd ? body.slice(prefix.length).trim().split(' ').shift().toLowerCase() : ''
