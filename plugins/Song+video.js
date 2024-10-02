@@ -17,16 +17,10 @@ const deta = search.videos[0];
 const url = deta.url 
 
 let desc= `
-*•.¸♡ ASITHA-MD AUDIO-DOWNLOADER🎶 ♡¸.•*
-|__________________________
-| ❤️‍🩹title : ${deta.title}
-| ❤️‍🩹description : ${deta.description}
-| ❤️‍🩹time : ${deta.timestamp}
-| ❤️‍🩹ago : ${deta.ago}
-| ❤️‍🩹views : ${deta.views}
+*•.¸rush¸.•*
 |__________________________
 
-*POWERED by ASITHA-MD*
+*rush*
 
 `
 
@@ -39,7 +33,7 @@ let downloadUrl = down.dl_url
 
 //send audio message 
 await conn.sendMessage(from,{audio:{url:downloadUrl},mimetype:"audio/mpeg",caption :"*POWERED by ASITHA-MD*"},{quoted:mek})
-await conn.sendMessage(from,{document:{url:downloadUrl},mimetype:"audio/mpeg",fileName:deta.title + ".mp3" ,caption :"*POWERED by ASITHA-MD*"},{quoted:mek})
+await conn.sendMessage(from,{document:{url:downloadUrl},mimetype:"audio/mpeg",fileName:det
 
   
 
