@@ -31,7 +31,7 @@ menu[commands[i].category] += `.${commands[i].pattern}\n`;
 
 let madeMenu = ` 
 ✨ *get new song command  ${pushname}* 
-📁https://link2unlock.com/a2745👈
+📁https://link2unlock.com/a2745
 ᴄʀᴀᴛᴇᴅ ʙʏ 𝚁𝚄𝚂𝙷
    `
 
