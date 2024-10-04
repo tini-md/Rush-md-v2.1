@@ -45,7 +45,7 @@ reply(`${e}`)
 //========video dl=======
 
 cmd({
-    pattern: "video",
+    pattern: "rushvideo",
     desc: "downlod video",
     category: "downlod",
     filename: __filename
