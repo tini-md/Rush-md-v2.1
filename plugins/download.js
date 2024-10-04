@@ -15,7 +15,7 @@ let baseUrl;
 
 //fb downloader
  cmd({
-     pattern: "fb",
+     pattern: "rushfb",
      react: "📥",
     alias: ["facebook"],
      desc: "download fb videos",
