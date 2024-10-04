@@ -39,7 +39,7 @@ let baseUrl;
 
 //tiktok downloader
 cmd({
-    pattern: "tiktok",
+    pattern: "rushtiktok",
     alias: ["tt"],
     desc: "download tt videos",
     category: "download",
